@@ -13,8 +13,8 @@ Nosso desafio é basicamente um subset do Google Forms
 - [ ] Sua aplicação deve criar forms
 - [ ] Deve ser dividido em múltiplas seções
 - [ ] Devemos poder adicionar campos a um form
-  - [ ] Texto curto
-  - [ ] Texto longo
+  - [x] Texto curto
+  - [x] Texto longo
   - [ ] Combobox
 - [ ] Devemos poder acessar a um form criado e ele deve renderizar os campos
 - [ ] Devemos poder preencher um form e as respostas daquele form devem ser salvas
