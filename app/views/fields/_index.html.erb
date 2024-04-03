@@ -1,0 +1,11 @@
+<h3>Fields</h3>
+<%= link_to 'Add Fields', new_form_field_path(@form) %>
+<% if fields.empty? %>
+  <p>No fields</p>
+<% else %>
+  <ul>
+    <% fields.each do |field| %>
+      <li><%= render 'field', field: %></li>
+    <% end %>
+  </ul>
+<% end %>

@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-class FormController < ApplicationController
+class FormsController < ApplicationController
   before_action :set_form, only: %i[show edit update destroy]
+
   def index
     @forms = Form.all.includes(:fields).order(created_at: :desc)
   end

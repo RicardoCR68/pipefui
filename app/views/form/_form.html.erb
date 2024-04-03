@@ -1,7 +1,0 @@
-
-<% form_for @form, url: form_path(@form) do |f| %>
-  <% @form.fields.each do |field| %>
-    <%= render f.field field %>
-  <% end %>
-  <%= render f %>
-<% end %>
