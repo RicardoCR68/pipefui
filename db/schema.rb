@@ -10,31 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_02_135602) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_02_150543) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "forms", force: :cascade do |t|
-    t.string "title"
-    t.boolean "can_answer", default: true
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'fields', force: :cascade do |t|
+    t.bigint 'form_id', null: false
+    t.string 'kind'
+    t.text 'text_body'
+    t.string 'string_body'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['form_id'], name: 'index_fields_on_form_id'
   end
 
-  create_table "string_fields", force: :cascade do |t|
-    t.string "body"
-    t.bigint "form_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["form_id"], name: "index_string_fields_on_form_id"
+  create_table 'forms', force: :cascade do |t|
+    t.string 'title'
+    t.boolean 'can_answer', default: true
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "text_fields", force: :cascade do |t|
-    t.text "body"
-    t.bigint "form_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["form_id"], name: "index_text_fields_on_form_id"
-  end
-
+  add_foreign_key 'fields', 'forms'
 end

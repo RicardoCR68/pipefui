@@ -1,6 +1,6 @@
 class Form < ApplicationRecord
-  has_many :text_fields
-  has_many :string_fields
+  has_many :fields
+  accepts_nested_attributes_for :fields
 
   validates :title, presence: true
 end
