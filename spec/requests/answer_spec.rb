@@ -47,7 +47,13 @@ RSpec.describe 'Answers', type: :request do
   end
 
   describe 'PATCH /update' do
-    let(:params) { { answer: attributes_for(:answer) } }
+    let(:params) do
+      {
+        answer: { email: 'KsQ5H@example.com' }
+        answer_
+      }
+    end
+
     let(:answer) { create(:answer, form:) }
 
     before { expect { patch form_answer_path(form, answer), params: } }
