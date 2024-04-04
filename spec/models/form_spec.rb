@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Form, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:title) }
+  end
+
+  describe 'associations' do
+    it { is_expected.to have_many(:fields) }
+  end
 end

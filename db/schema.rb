@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_01_020222) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_03_204909) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "fields", force: :cascade do |t|
+    t.bigint "form_id", null: false
+    t.string "kind"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "label"
+    t.index ["form_id"], name: "index_fields_on_form_id"
+  end
 
   create_table "forms", force: :cascade do |t|
     t.string "title"
@@ -21,4 +30,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_01_020222) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "fields", "forms"
 end
