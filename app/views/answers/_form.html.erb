@@ -1,0 +1,18 @@
+<%= form_with model: [@form, @answer] do |f| %>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+
+  <%= f.fields_for :answer_fields do |af| %>
+    <% obj = af.object %>
+    <%= af.hidden_field :field_id %>
+
+    <%= af.label obj.field.label %>
+    <% if obj.string? %>
+      <%= af.text_field :string_body %>
+    <% elsif obj.text? %>
+      <%= af.text_area :text_body %>
+    <% end %>
+  <% end %>
+
+  <%= f.submit %>
+<% end %>

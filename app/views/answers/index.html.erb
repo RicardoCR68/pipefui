@@ -1,0 +1,10 @@
+<h1>Form Answers</h1>
+
+<%= link_to 'New Answer', new_form_answer_path(@form) %>
+
+<ul>
+  <% @answers.each do |answer| %>
+    <li><h2>By: <%= answer.email %></h2>
+    <%= link_to 'Review', form_answer_path(@form, answer) %></li>
+  <% end %>
+</ul>

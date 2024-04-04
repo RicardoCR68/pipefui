@@ -3,3 +3,4 @@
 <%= button_to 'Delete', @form, method: :delete %>
 
 <%= render 'fields/index', fields: @form.fields %>
+<%= link_to 'Answers', form_answers_path(form_id: @form) %>

@@ -7,3 +7,19 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+FactoryBot.create_list(:form, rand(3..6))
+
+Form.all.each do |form|
+  puts "##{form.id} - Seeding #{form.title}"
+  FactoryBot.create_list(:field, rand(1..5), form:)
+  puts "\t#{form.fields.count} fields created"
+  FactoryBot.create_list(:answer, rand(2..7), form:)
+  puts "\t#{form.answers.count} answers created"
+  form.answers.each do |answer|
+    form.fields.each do |field|
+      FactoryBot.create(:answer_field, answer:, field:)
+    end
+  end
+  puts "\tAnswer Fields created"
+end

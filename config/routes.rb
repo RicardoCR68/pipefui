@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :forms do
     resources :fields, except: %i[index show]
+    resources :answers
   end
 
   root to: 'forms#index'

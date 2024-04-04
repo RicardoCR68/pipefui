@@ -9,5 +9,6 @@ RSpec.describe Field, type: :model do
 
   describe 'associations' do
     it { is_expected.to belong_to(:form) }
+    it { is_expected.to have_many(:answer_fields) }
   end
 end
