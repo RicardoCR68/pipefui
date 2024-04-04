@@ -46,7 +46,7 @@ class AnswersController < ApplicationController
   private
 
   def set_answer
-    @answer = Answer.includes(:answer_fields).find(params[:id])
+    @answer = Answer.includes(answer_fields: :field).find(params[:id])
   end
 
   def set_form

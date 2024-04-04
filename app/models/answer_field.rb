@@ -9,11 +9,11 @@ class AnswerField < ApplicationRecord
   validate :string_body_blank_if_not_string
 
   def text?
-    field.kind == 'text'
+    field&.kind == 'text'
   end
 
   def string?
-    field.kind == 'string'
+    field&.kind == 'string'
   end
 
   def body

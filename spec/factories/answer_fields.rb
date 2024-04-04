@@ -6,12 +6,12 @@ FactoryBot.define do
     text_body { field.kind == 'text' ? Faker::Lorem.paragraph : nil }
   end
 
-  trait :string do
+  trait :with_string_kind do
     field { build(:field, kind: 'string', form: answer.form) }
     string_body { Faker::Lorem.sentence }
   end
 
-  trait :text do
+  trait :with_text_kind do
     field { build(:field, kind: 'text', form: answer.form) }
     text_body { Faker::Lorem.paragraph }
   end
