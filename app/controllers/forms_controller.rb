@@ -19,7 +19,7 @@ class FormsController < ApplicationController
     if @form.save
       redirect_to form_path(@form)
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -29,7 +29,7 @@ class FormsController < ApplicationController
     if @form.update(form_params)
       redirect_to form_path(@form)
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -37,7 +37,7 @@ class FormsController < ApplicationController
     if @form.destroy
       redirect_to forms_path
     else
-      render :show
+      render :show, status: :unprocessable_entity
     end
   end
 
