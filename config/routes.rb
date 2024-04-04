@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # Defines the root path route ('/')
 
   resources :forms do
-    resources :fields
+    resources :fields, except: %i[index show]
   end
 
   root to: 'forms#index'
