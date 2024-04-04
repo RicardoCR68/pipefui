@@ -42,9 +42,22 @@ RSpec.describe 'Forms', type: :request do
   describe 'GET /show' do
     let(:form) { create(:form) }
 
-    before { get form_path(form) }
+    context 'when there are no fields' do
+      before { get form_path(form) }
 
-    it { expect(response).to be_successful }
+      it { expect(response).to be_successful }
+      it { expect(response.body).to include('No fields') }
+    end
+
+    context 'when there are fields' do
+      let!(:field) { create(:field, form:) }
+
+      before { get form_path(form) }
+
+      it { expect(response).to be_successful }
+      it { expect(response.body).to include(field.label) }
+      it { expect(response.body).to include(field.kind) }
+    end
   end
 
   describe 'GET /edit' do
