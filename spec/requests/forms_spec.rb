@@ -27,7 +27,7 @@ RSpec.describe 'Forms', type: :request do
 
   describe 'POST /create' do
     context 'with valid params' do
-      let(:params) { { form: attributes_for(:form)} }
+      let(:params) { { form: { title: 'My title' } } }
 
       it { expect { post forms_path, params: }.to change { Form.count }.by(1) }
     end
@@ -70,12 +70,12 @@ RSpec.describe 'Forms', type: :request do
 
   describe 'PATCH /update' do
     context 'with valid params' do
-      let(:params) { { form: attributes_for(:form)} }
+      let(:params) { { form: { title: 'My title' } } }
       let(:form) { create(:form) }
 
       before { patch form_path(form), params: }
 
-      it { expect(form.reload.title).to eq(params[:form][:title]) }
+      it { expect(form.reload.title).to eq('My title') }
     end
 
     context 'with invalid params' do
@@ -88,12 +88,12 @@ RSpec.describe 'Forms', type: :request do
 
   describe 'PUT /update' do
     context 'with valid params' do
-      let(:params) { { form: attributes_for(:form)} }
+      let(:params) { { form: { title: 'My title' } } }
       let(:form) { create(:form) }
 
       before { put form_path(form), params: }
 
-      it { expect(form.reload.title).to eq(params[:form][:title]) }
+      it { expect(form.reload.title).to eq('My title') }
     end
 
     context 'with invalid params' do

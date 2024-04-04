@@ -11,7 +11,7 @@ RSpec.describe 'Fields', type: :request do
 
   describe 'POST /create' do
     context 'with valid params' do
-      let(:params) { { field: attributes_for(:field)} }
+      let(:params) { { field: { label: 'My label', kind: 'text' } } }
 
       it { expect { post form_fields_path(form), params: }.to change { Field.count }.by(1) }
     end
@@ -34,20 +34,36 @@ RSpec.describe 'Fields', type: :request do
   describe 'PATCH /update' do
     context 'with valid params' do
       let(:field) { create(:field, form:) }
-      let(:params) { { field: attributes_for(:field)} }
+      let(:params) { { field: { label: 'New Label', kind: 'text' } } }
 
       before { patch form_field_path(form, field), params: }
 
-      it { expect(field.reload.label).to eq(params[:field][:label]) }
+      it { expect(field.reload.label).to eq('New Label') }
     end
 
     context 'with invalid params' do
       let(:field) { create(:field, form:) }
       let(:params) { { field: { label: nil } } }
 
-      before { patch form_field_path(form, field), params: }
+      it { expect { patch form_field_path(form, field), params: }.not_to change(field, :label) }
+    end
+  end
 
-      it { expect(field.reload.label).not_to eq(params[:field][:label]) }
+  describe 'PUT /update' do
+    context 'with valid params' do
+      let(:field) { create(:field, form:) }
+      let(:params) { { field: { label: 'New Label', kind: 'text' } } }
+
+      before { put form_field_path(form, field), params: }
+
+      it { expect(field.reload.label).to eq('New Label') }
+    end
+
+    context 'with invalid params' do
+      let(:field) { create(:field, form:) }
+      let(:params) { { field: { label: nil } } }
+
+      it { expect { put form_field_path(form, field), params: }.not_to change(field, :label) }
     end
   end
 
