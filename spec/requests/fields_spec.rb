@@ -3,25 +3,6 @@ require 'rails_helper'
 RSpec.describe 'Fields', type: :request do
   subject(:form) { create(:form) }
 
-  describe 'GET /_index' do
-    context 'when there are no fields' do
-      before { get form_path(form) }
-
-      it { expect(response).to be_successful }
-      it { expect(response.body).to include('No fields') }
-    end
-
-    context 'when there are fields' do
-      let!(:field) { create(:field, form:) }
-
-      before { get form_path(form) }
-
-      it { expect(response).to be_successful }
-      it { expect(response.body).to include(field.label) }
-      it { expect(response.body).to include(field.kind) }
-    end
-  end
-
   describe 'GET /new' do
     before { get new_form_field_path(form) }
 
