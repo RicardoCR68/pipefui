@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Answers', type: :request do
-  subject(:form) { create(:form) }
+  let(:form) { create(:form) }
 
   describe 'GET /index' do
     before { get form_answers_path(form) }
@@ -47,27 +47,21 @@ RSpec.describe 'Answers', type: :request do
   end
 
   describe 'PATCH /update' do
-    let(:params) do
-      {
-        answer: { email: 'KsQ5H@example.com' }
-        answer_
-      }
-    end
-
+    let(:params) { { answer: { email: 'new_email@example.com' } } }
     let(:answer) { create(:answer, form:) }
 
-    before { expect { patch form_answer_path(form, answer), params: } }
+    before { patch form_answer_path(form, answer), params: }
 
-    it { expect(answer,reload.email).to eq(params[:answer][:email]) }
+    it { expect(answer.reload.email).to eq('new_email@example.com') }
   end
 
   describe 'PUT /update' do
-    let(:params) { { answer: attributes_for(:answer) } }
+    let(:params) { { answer: { email: 'new_email@example.com' } } }
     let(:answer) { create(:answer, form:) }
 
-    before { expect { put form_answer_path(form, answer), params: } }
+    before { put form_answer_path(form, answer), params: }
 
-    it { expect(answer,reload.email).to eq(params[:answer][:email]) }
+    it { expect(answer.reload.email).to eq('new_email@example.com') }
   end
 
   describe 'DELETE /destroy' do
@@ -75,5 +69,4 @@ RSpec.describe 'Answers', type: :request do
 
     it { expect{ delete form_answer_path(form, answer) }.to change { Answer.count }.by(-1) }
   end
-
 end

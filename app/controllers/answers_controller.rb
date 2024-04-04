@@ -50,7 +50,7 @@ class AnswersController < ApplicationController
   end
 
   def set_form
-    @form = Form.find(params[:form_id])
+    @form = Form.includes(:fields).find(params[:form_id])
   end
 
   def answer_params
