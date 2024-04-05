@@ -12,14 +12,16 @@
 
   <%= f.fields_for :answer_fields do |af| %>
     <% obj = af.object %>
-    <%= af.hidden_field :field_id %>
+    <% unless obj.outdated? %>
+      <%= af.hidden_field :field_id %>
 
-    <% if obj.string? %>
-      <%= af.label :string_body, obj.field.label %>
-      <%= af.text_field :string_body %>
-    <% elsif obj.text? %>
-      <%= af.label :text_body, obj.field.label%>
-      <%= af.text_area :text_body %>
+      <% if obj.string? %>
+        <%= af.label :string_body, obj.field.label %>
+        <%= af.text_field :string_body %>
+      <% elsif obj.text? %>
+        <%= af.label :text_body, obj.field.label%>
+        <%= af.text_area :text_body %>
+      <% end %>
     <% end %>
   <% end %>
 

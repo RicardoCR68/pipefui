@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Form answers', type: :feature, js: true do
+RSpec.describe 'Form answers', type: :feature do
   let!(:field) { create(:field, form:) }
   subject(:form) { create(:form) }
 

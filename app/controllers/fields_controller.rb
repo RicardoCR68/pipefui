@@ -1,5 +1,5 @@
 class FieldsController < ApplicationController
-  before_action :set_field, only: %i[edit update destroy]
+  before_action :set_field, only: %i[outdate_field]
   before_action :set_form
 
   def new
@@ -14,6 +14,17 @@ class FieldsController < ApplicationController
       redirect_to form_path(@form)
     else
       render :new
+    end
+  end
+
+  def outdate_field
+    @field.outdated = true
+    if @field.save
+      @field.outdate_answer_fields
+
+      redirect_to form_path(@field.form)
+    else
+      redirect_to form_path(@field.form), status: :unprocessable_entity, alert: @field.errors
     end
   end
 

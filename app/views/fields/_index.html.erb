@@ -5,7 +5,9 @@
 <% else %>
   <ul>
     <% fields.each do |field| %>
-      <li><%= render 'field', field: %></li>
+      <% unless field.outdated? %>
+        <li><%= render 'field', field: %></li>
+      <% end %>
     <% end %>
   </ul>
 <% end %>

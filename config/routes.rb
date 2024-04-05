@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   get 'up' => 'rails/health#show', as: :rails_health_check
 
   resources :forms do
-    resources :fields, except: %i[index show]
-    resources :answers
+    resources :fields, only: %i[new create]
+    put 'fields/:id/', to: 'fields#outdate_field', as: :outdate_field
+    resources :answers, only: %i[new create index show]
   end
 
   root to: 'forms#index'

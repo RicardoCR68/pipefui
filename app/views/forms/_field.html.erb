@@ -1,5 +1,4 @@
 <h5>Label: <%= field.label %></h5>
 <h5>Kind: <%= field.kind %></h5>
 
-<%= link_to 'Edit', edit_form_field_path(@form, field) %>
-<%= button_to 'Delete', form_field_path(@form, field), method: :delete %>
+<%= button_to 'Disable this field', form_outdate_field_path(@form, field), method: :put %>

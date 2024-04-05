@@ -5,4 +5,8 @@ class Answer < ApplicationRecord
   accepts_nested_attributes_for :answer_fields
 
   validates :email, presence: true
+
+  def outdated?
+    outdated
+  end
 end

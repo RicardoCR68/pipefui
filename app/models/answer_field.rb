@@ -20,6 +20,17 @@ class AnswerField < ApplicationRecord
     text? ? text_body : string_body
   end
 
+  def outdated?
+    @outdated ||= field.outdated?
+  end
+
+  def outdate_answer
+    return if answer.outdated?
+
+    answer.outdated = true
+    answer.save
+  end
+
   private
 
   def text_body_blank_if_not_text

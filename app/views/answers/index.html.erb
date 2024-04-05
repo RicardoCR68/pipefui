@@ -4,7 +4,8 @@
 
 <ul>
   <% @answers.each do |answer| %>
-    <li><h2>By: <%= answer.email %></h2>
+    <li><h2>By: <%= answer.email %> - <%= answer.created_at %> - <%= answer.outdated? ? 'Outdated' : 'Current' %></h2>
+    <li><h2>Status: <%= answer.outdated? %></h2>
     <%= link_to 'Review', form_answer_path(@form, answer) %></li>
   <% end %>
 </ul>
